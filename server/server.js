@@ -1,8 +1,11 @@
-const express = require("express");
-const app = express();
+const express = require('express')
+const app = express()
+const path = require('path')
 
-//middle ware
-app.use(express.static(`${__dirname}/public`)); // this will give every request an access to public folder
+app.use(express.static(`public`))
 
-app.listen(4000, () => console.log(`server running on 4000`));
+app.get('/',(req,res) => {
+    res.sendFile(path.join(__dirname,'../public/index.html'))
+})
 
+app.listen(4000, () => console.log(`server running on 4000`))
